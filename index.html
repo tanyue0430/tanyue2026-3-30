@@ -7,19 +7,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,'Microsoft YaHei',sans-serif}
-:root{--bg:#f8f9fa;--card:#fff;--b:#4dabf7;--p:#9775fa;--dk:#343a40;--gy:#6c757d;--sd:0 8px 20px rgba(0,0,0,0.05);--hv:0 20px 35px rgba(77,171,247,0.15);--rd:20px;--tr:all 0.3s cubic-bezier(0.2,0.9,0.4,1.1)}
+:root{--bg:#f8f9fa;--card:#fff;--b:#4dabf7;--p:#9775fa;--dk:#343a40;--gy:#6c757d;--sd:0 8px 20px rgba(0,0,0,0.05);--hv:0 20px 35px rgba(77,171,247,0.2);--rd:20px;--tr:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1)}
 body{background:var(--bg);color:var(--dk);line-height:1.5}
 header{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid rgba(77,171,247,0.2);padding:10px 0}
 .nav{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:1.6rem;font-weight:700;display:flex;align-items:center;gap:8px}
-.logo i{color:var(--b);animation:spin 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.logo span{background:linear-gradient(135deg,var(--b),var(--p));background-clip:text;-webkit-background-clip:text;color:transparent}
+.logo{display:flex;align-items:center;cursor:pointer;margin-left:20px} /* 图片右移 */
+.logo img{height:40px;width:auto;display:block;transition:transform 0.2s ease}
+.logo img:hover{transform:scale(1.02)}
+.logo:active img{transform:scale(0.98)}
 nav ul{display:flex;list-style:none;gap:8px}
-nav ul li a{color:var(--dk);text-decoration:none;font-weight:600;padding:8px 18px;border-radius:40px;transition:var(--tr)}
-nav ul li a:hover{background:rgba(77,171,247,0.1);transform:translateY(-2px)}
+nav ul li a{color:var(--dk);text-decoration:none;font-weight:600;padding:8px 18px;border-radius:40px;transition:var(--tr);display:inline-block}
+nav ul li a:hover{background:rgba(77,171,247,0.15);transform:translateY(-2px);box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+nav ul li a:active{transform:translateY(1px)}
 nav ul li a.active{background:linear-gradient(135deg,var(--b),var(--p));color:#fff;box-shadow:0 4px 12px rgba(77,171,247,0.3)}
-.menu-btn{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--dk)}
+.menu-btn{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--dk);transition:var(--tr);padding:8px}
+.menu-btn:hover{transform:scale(1.1);color:var(--b)}
+.menu-btn:active{transform:scale(0.95)}
 main{margin-top:76px}
 .sec{display:none;padding:40px 20px;max-width:1200px;margin:0 auto;animation:fi 0.4s ease}
 .sec.active{display:block}
@@ -28,46 +31,59 @@ main{margin-top:76px}
 .hero-txt{max-width:500px;text-align:center}
 .hero-txt h1{font-size:3rem;background:linear-gradient(135deg,var(--b),var(--p));background-clip:text;-webkit-background-clip:text;color:transparent;margin-bottom:20px}
 .hero-txt p{font-size:1rem;color:var(--gy);margin-bottom:18px;line-height:1.6;text-align:left}
-.skin-img{width:500px;height:282px;border-radius:16px;overflow:hidden;box-shadow:var(--sd);border:1px solid rgba(77,171,247,0.2)}
+.skin-img{width:500px;height:282px;border-radius:16px;overflow:hidden;box-shadow:var(--sd);border:1px solid rgba(77,171,247,0.2);transition:var(--tr)}
+.skin-img:hover{transform:scale(1.01);box-shadow:var(--hv)}
 .skin-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .skin-img:hover img{transform:scale(1.03)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;margin-top:32px}
-.card{background:var(--card);border-radius:var(--rd);transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd);overflow:hidden}
-.card:hover{transform:translateY(-6px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.2)}
-.card img{width:100%;height:200px;object-fit:cover}
+.card{background:var(--card);border-radius:var(--rd);transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd);overflow:hidden;cursor:pointer}
+.card:hover{transform:translateY(-8px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.3)}
+.card:active{transform:translateY(-2px)}
+.card img{width:100%;height:200px;object-fit:cover;transition:transform 0.3s ease}
+.card:hover img{transform:scale(1.02)}
 .card-cnt{padding:22px}
 .card-cnt h3{color:var(--b);margin-bottom:14px;font-size:1.35rem}
 .card-cnt p{color:var(--gy);font-size:0.92rem;line-height:1.5;margin-bottom:8px}
 .expert{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
-.expert span{background:rgba(77,171,247,0.1);padding:6px 14px;border-radius:30px;font-size:0.85rem;color:var(--b);font-weight:500}
-.s-card{background:var(--card);border-radius:var(--rd);padding:28px 20px;text-align:center;transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd)}
-.s-card:hover{transform:translateY(-6px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.2)}
-.s-icon{font-size:2.8rem;color:var(--b);margin-bottom:12px}
-.rank-b{display:inline-block;background:linear-gradient(135deg,var(--b),var(--p));color:#fff;padding:6px 20px;border-radius:40px;font-weight:600;margin-top:12px;font-size:1.1rem}
+.expert span{background:rgba(77,171,247,0.1);padding:6px 14px;border-radius:30px;font-size:0.85rem;color:var(--b);font-weight:500;transition:var(--tr)}
+.expert span:hover{background:rgba(77,171,247,0.2);transform:translateY(-2px)}
+.s-card{background:var(--card);border-radius:var(--rd);padding:28px 20px;text-align:center;transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd);cursor:pointer}
+.s-card:hover{transform:translateY(-8px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.3)}
+.s-card:active{transform:translateY(-2px)}
+.s-icon{font-size:2.8rem;color:var(--b);margin-bottom:12px;transition:var(--tr)}
+.s-card:hover .s-icon{transform:scale(1.05);color:var(--p)}
+.rank-b{display:inline-block;background:linear-gradient(135deg,var(--b),var(--p));color:#fff;padding:6px 20px;border-radius:40px;font-weight:600;margin-top:12px;font-size:1.1rem;transition:var(--tr)}
+.s-card:hover .rank-b{box-shadow:0 4px 12px rgba(77,171,247,0.3);transform:scale(1.02)}
 .rest{background:linear-gradient(135deg,#adb5bd,#868e96)}
 .core-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;margin-top:32px}
-.core{background:var(--card);border-radius:var(--rd);padding:24px;transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd);display:flex;gap:20px;align-items:flex-start}
-.core:hover{transform:translateY(-6px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.2)}
-.core-av{width:70px;height:70px;background:linear-gradient(135deg,var(--b),var(--p));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.core{background:var(--card);border-radius:var(--rd);padding:24px;transition:var(--tr);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--sd);display:flex;gap:20px;align-items:flex-start;cursor:pointer}
+.core:hover{transform:translateY(-8px);box-shadow:var(--hv);border-color:rgba(77,171,247,0.3)}
+.core:active{transform:translateY(-2px)}
+.core-av{width:70px;height:70px;background:linear-gradient(135deg,var(--b),var(--p));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;transition:transform 0.2s ease}
+.core:hover .core-av{transform:scale(1.02)}
 .core-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .core-info{flex:1;display:flex;flex-direction:column}
-.core-name{font-size:1.5rem;font-weight:700;margin-bottom:8px;color:var(--dk)}
+.core-name{font-size:1.5rem;font-weight:700;margin-bottom:8px;color:var(--dk);transition:color 0.2s}
+.core:hover .core-name{color:var(--b)}
 .core-badge{min-height:2.8rem;margin-bottom:6px;display:flex;flex-wrap:wrap;gap:8px}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:40px;font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:40px;font-weight:600;transition:var(--tr)}
 .badge i{font-size:0.9rem}
 .badge.president{background:linear-gradient(135deg,#ffd966,#ffb347);color:#fff;font-size:1.1rem;padding:6px 16px}
 .badge.vice{background:#ff6b6b;color:#fff;font-size:0.95rem;padding:5px 14px}
 .badge.high-active{background:var(--p);color:#fff;font-size:0.8rem;padding:4px 10px}
+.core:hover .badge{transform:translateY(-2px);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
 .core-rank{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.ritem{display:inline-flex;align-items:center;gap:4px;background:#f1f3f5;padding:3px 8px;border-radius:20px;font-size:0.75rem;color:#6c757d;font-weight:400}
+.ritem{display:inline-flex;align-items:center;gap:4px;background:#f1f3f5;padding:3px 8px;border-radius:20px;font-size:0.75rem;color:#6c757d;font-weight:400;transition:var(--tr)}
+.core:hover .ritem{background:#e9ecef;transform:translateY(-1px)}
 .ritem i{color:var(--b);font-size:0.7rem}
 footer{background:#fff;padding:28px 0;margin-top:60px;text-align:center;border-top:1px solid rgba(0,0,0,0.05)}
 footer p{color:var(--gy);margin-bottom:6px;font-size:0.9rem}
 .social{display:flex;justify-content:center;gap:18px;margin-top:16px}
 .social a{color:var(--dk);background:rgba(77,171,247,0.08);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;transition:var(--tr)}
-.social a:hover{color:var(--b);background:rgba(77,171,247,0.2);transform:translateY(-3px)}
+.social a:hover{color:var(--b);background:rgba(77,171,247,0.2);transform:translateY(-3px) scale(1.05)}
+.social a:active{transform:translateY(1px) scale(0.95)}
 @media(max-width:992px){.hero{flex-direction:column;text-align:center;padding:30px}.hero-txt p{text-align:center}.skin-img{width:400px;height:225px}}
-@media(max-width:768px){nav ul{display:none;position:absolute;top:65px;left:0;width:100%;background:#fff;flex-direction:column;padding:20px;gap:12px;box-shadow:0 15px 25px rgba(0,0,0,0.1);border-top:1px solid rgba(77,171,247,0.2)}nav ul.active{display:flex}.menu-btn{display:block}.hero-txt h1{font-size:2.2rem}.grid,.core-grid{grid-template-columns:1fr}.core{flex-direction:column;align-items:center;text-align:center}.core-badge,.core-rank{justify-content:center}.skin-img{width:300px;height:169px}}
+@media(max-width:768px){nav ul{display:none;position:absolute;top:65px;left:0;width:100%;background:#fff;flex-direction:column;padding:20px;gap:12px;box-shadow:0 15px 25px rgba(0,0,0,0.1);border-top:1px solid rgba(77,171,247,0.2)}nav ul.active{display:flex}.menu-btn{display:block}.hero-txt h1{font-size:2.2rem}.grid,.core-grid{grid-template-columns:1fr}.core{flex-direction:column;align-items:center;text-align:center}.core-badge,.core-rank{justify-content:center}.skin-img{width:300px;height:169px}.logo{margin-left:10px}.logo img{height:32px}}
 h2{font-size:2rem;margin-bottom:8px}.sec>p{color:var(--gy);margin-bottom:16px}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#e9ecef}::-webkit-scrollbar-thumb{background:var(--b);border-radius:5px}
 </style>
@@ -75,7 +91,9 @@ h2{font-size:2rem;margin-bottom:8px}.sec>p{color:var(--gy);margin-bottom:16px}
 <body>
 <header>
 <div class="nav">
-<div class="logo"><i class="fas fa-moon"></i><span>探月协会</span></div>
+<div class="logo" id="logoHome">
+    <img src="https://picui.ogmua.cn/s1/2026/04/03/69cf73578d805.webp" alt="探月协会">
+</div>
 <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
 <nav><ul id="navList">
 <li><a href="#home" class="nav-link active" data-sec="home">首页</a></li>
@@ -111,7 +129,6 @@ h2{font-size:2rem;margin-bottom:8px}.sec>p{color:var(--gy);margin-bottom:16px}
 <h2><i class="fas fa-handshake"></i> 合作</h2>
 <p>探月协会合作与申请渠道</p>
 <div class="grid">
-    <!-- 协会申请审核卡片 -->
     <div class="card">
         <img src="https://www.u7top.com/uploads/allimg/gl/010_dwrg/2024112733720317.jpg" alt="">
         <div class="card-cnt">
@@ -120,7 +137,6 @@ h2{font-size:2rem;margin-bottom:8px}.sec>p{color:var(--gy);margin-bottom:16px}
             <p>联系QQ：3320531865</p>
         </div>
     </div>
-    <!-- 商务合作卡片（文字已按要求修改） -->
     <div class="card">
         <img src="https://picui.ogmua.cn/s1/2026/03/29/69c9239bc18f7.webp" alt="">
         <div class="card-cnt">
@@ -178,9 +194,52 @@ h2{font-size:2rem;margin-bottom:8px}.sec>p{color:var(--gy);margin-bottom:16px}
 </footer>
 <script>
 (function(){
-const btn=document.getElementById('menuBtn'), nav=document.getElementById('navList'), links=document.querySelectorAll('.nav-link'), sections=document.querySelectorAll('.sec');
-btn.onclick=()=>{nav.classList.toggle('active');btn.innerHTML=nav.classList.contains('active')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>'};
-links.forEach(l=>{l.onclick=e=>{e.preventDefault();links.forEach(x=>x.classList.remove('active'));l.classList.add('active');const t=l.getAttribute('data-sec');sections.forEach(s=>s.classList.remove('active'));document.getElementById(t).classList.add('active');if(window.innerWidth<=768){nav.classList.remove('active');btn.innerHTML='<i class="fas fa-bars"></i>'}}});
+const btn=document.getElementById('menuBtn');
+const nav=document.getElementById('navList');
+const links=document.querySelectorAll('.nav-link');
+const sections=document.querySelectorAll('.sec');
+const logoHome=document.getElementById('logoHome');
+
+// 导航切换函数
+function switchToSection(sectionId, activeLink) {
+    sections.forEach(s=>s.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    links.forEach(l=>l.classList.remove('active'));
+    if(activeLink) activeLink.classList.add('active');
+}
+
+// 点击logo回到首页
+logoHome.addEventListener('click', function(e) {
+    e.preventDefault();
+    const homeLink = document.querySelector('.nav-link[data-sec="home"]');
+    if(homeLink) {
+        homeLink.click();
+    } else {
+        switchToSection('home', null);
+    }
+});
+
+// 移动端菜单
+btn.onclick=()=>{
+    nav.classList.toggle('active');
+    btn.innerHTML=nav.classList.contains('active')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+};
+
+// 导航链接点击
+links.forEach(l=>{
+    l.onclick=e=>{
+        e.preventDefault();
+        links.forEach(x=>x.classList.remove('active'));
+        l.classList.add('active');
+        const t=l.getAttribute('data-sec');
+        sections.forEach(s=>s.classList.remove('active'));
+        document.getElementById(t).classList.add('active');
+        if(window.innerWidth<=768){
+            nav.classList.remove('active');
+            btn.innerHTML='<i class="fas fa-bars"></i>';
+        }
+    };
+});
 })();
 </script>
 </body>
